@@ -65,7 +65,11 @@ def _frame_to_ascii(
             elif pos in obstacles:
                 row.append("■■")
             elif config.show_goals and pos in goals.values():
-                row.append("GG")
+                goal_agent_ids = [
+                    agent_id for agent_id, goal_pos in goals.items()
+                    if goal_pos == pos
+                ]
+                row.append(_goal_symbol(goal_agent_ids[0]))
             else:
                 row.append("..")
 
@@ -85,3 +89,11 @@ def _agent_symbol(agent_ids: list[str]) -> str:
         return f"a{digits[-1]}"
 
     return agent_id[:2].ljust(2)
+
+def _goal_symbol(agent_id: str) -> str:
+    digits = "".join(ch for ch in agent_id if ch.isdigit())
+
+    if digits:
+        return f"g{digits[-1]}"
+
+    return ("g" + agent_id[:1]).ljust(2)

@@ -44,7 +44,7 @@ def test_ascii_contains_obstacle():
 
     assert "■■" in out
 
-def test_ascii_contains_goal():
+def test_ascii_contains_indexed_goal():
     frame = {
         "step": 0,
         "positions": {},
@@ -62,4 +62,4 @@ def test_ascii_contains_goal():
         config=ReplayRenderConfig(show_goals=True),
     )
 
-    assert "GG" in out
+    assert "g0" in out
