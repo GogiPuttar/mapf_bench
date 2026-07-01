@@ -1,0 +1,2 @@
+[console_scripts]
+mapf-bench = mapf_bench.cli:app
