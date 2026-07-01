@@ -13,6 +13,10 @@ dependencies = [
 dev = [
   "pytest>=8.0.0",
 ]
+gui = [
+  "pygame>=2.5.0",
+]
+
 
 [project.scripts]
 mapf-bench = "mapf_bench.cli:app"
