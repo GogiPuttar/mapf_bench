@@ -1,0 +1,9 @@
+services:
+  mapf-bench:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      args:
+        UBUNTU_VERSION: ${UBUNTU_VERSION:-24.04}
+    image: mapf-bench:${UBUNTU_VERSION:-24.04}
+    command: pytest

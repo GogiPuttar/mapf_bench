@@ -1,0 +1,24 @@
+fps: 6.0
+cell_size_px: 56
+
+show_grid: true
+show_goals: true
+loop: true
+
+theme:
+  background: [245, 245, 245]
+  grid: [190, 190, 190]
+  obstacle: [40, 40, 40]
+  collision: [240, 80, 80]
+  text: [20, 20, 20]
+  sidebar: [230, 230, 230]
+
+agent_palette:
+  - [52, 152, 219]
+  - [231, 76, 60]
+  - [46, 204, 113]
+  - [241, 196, 15]
+  - [155, 89, 182]
+  - [230, 126, 34]
+  - [26, 188, 156]
+  - [236, 240, 241]
