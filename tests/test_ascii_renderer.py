@@ -1,4 +1,4 @@
-from mapf_bench.render.ascii import _frame_to_ascii
+from mapf_bench.render.ascii import _frame_to_ascii, _clear_screen
 from mapf_bench.render.config import ReplayRenderConfig
 
 
@@ -63,3 +63,8 @@ def test_ascii_contains_indexed_goal():
     )
 
     assert "g0" in out
+
+
+def test_clear_screen_does_not_fail_without_term(monkeypatch):
+    monkeypatch.delenv("TERM", raising=False)
+    _clear_screen()

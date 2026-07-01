@@ -1,8 +1,19 @@
 import json
 import os
 import time
+import sys
 
 from mapf_bench.render.config import ReplayRenderConfig
+
+
+def _clear_screen() -> None:
+    if not sys.stdout.isatty():
+        return
+
+    if os.name == "nt":
+        os.system("cls")
+    elif os.environ.get("TERM"):
+        os.system("clear")
 
 
 def render_ascii(replay_path: str, config: ReplayRenderConfig) -> None:
@@ -19,7 +30,7 @@ def render_ascii(replay_path: str, config: ReplayRenderConfig) -> None:
 
     while True:
         for frame in history:
-            os.system("clear")
+            _clear_screen()
             print(_frame_to_ascii(width, height, obstacles, goals, frame, config))
             time.sleep(delay)
 
