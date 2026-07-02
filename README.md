@@ -45,4 +45,4 @@ Run the supported Docker matrix:
 docker/scripts/test.sh
 ```
 
-The matrix covers Ubuntu `22.04`, `24.04`, and `devel`.
+The matrix covers Ubuntu `22.04`, `24.04`, `26.04`, and `devel`.
