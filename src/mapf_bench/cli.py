@@ -9,6 +9,8 @@ from mapf_bench.solvers import make_solver
 from mapf_bench.render.ascii import render_ascii
 from mapf_bench.render.config import load_render_config
 
+from mapf_bench.plugins.loader import load_pathfinder_from_file
+
 
 app = typer.Typer()
 
@@ -23,12 +25,19 @@ def run(
     solver: str = typer.Option("wait", "--solver"),
     out: str = typer.Option("runs/latest", "--out"),
     seed: int | None = typer.Option(None, "--seed"),
+    plugin: str | None = typer.Option(None, "--plugin"),
 ):
     problem = load_problem(scenario)
-    solver_obj = make_solver(solver, seed=seed)
+
+    if plugin is not None:
+        solver_obj = load_pathfinder_from_file(plugin)
+        solver_name = plugin
+    else:
+        solver_obj = make_solver(solver, seed=seed)
+        solver_name = solver
 
     result = run_simulation(problem, solver_obj)
-    write_run_outputs(out, problem, result, solver)
+    write_run_outputs(out, problem, result, solver_name)
 
     metrics = compute_metrics(problem, result)
     print(metrics)

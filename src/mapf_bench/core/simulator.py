@@ -3,6 +3,8 @@ from dataclasses import dataclass, field
 from mapf_bench.core.problem import ACTION_DELTAS, Action, MAPFProblem, Position
 from mapf_bench.core.solver import SolverPlugin
 
+from mapf_bench.plugins.base import PathfinderPlugin, StepRequest
+
 
 @dataclass
 class StepRecord:
@@ -30,7 +32,7 @@ def apply_action(pos: Position, action: Action) -> Position:
     return pos[0] + dx, pos[1] + dy
 
 
-def run_simulation(problem: MAPFProblem, solver: SolverPlugin) -> SimulationResult:
+def run_simulation(problem: MAPFProblem, solver: SolverPlugin | PathfinderPlugin) -> SimulationResult:
     solver.reset(problem)
 
     goals = {a.agent_id: a.goal for a in problem.agents}
@@ -53,7 +55,17 @@ def run_simulation(problem: MAPFProblem, solver: SolverPlugin) -> SimulationResu
                 num_invalid_moves=total_invalid,
             )
 
-        actions = solver.step(dict(positions))
+        if hasattr(solver, "capabilities"):
+            step_result = solver.step(
+                StepRequest(
+                    problem=problem,
+                    step_index=step,
+                    positions=dict(positions),
+                )
+            )
+            actions = step_result.actions
+        else:
+            actions = solver.step(dict(positions))
         proposed: dict[str, Position] = {}
         invalid: list[str] = []
 
