@@ -2,4 +2,8 @@ type: python
 module: mapf_bench_primal2.adapter
 class: PRIMAL2Pathfinder
 params:
-  mode: compat_greedy
+  mode: legacy_tf
+  checkpoint_path: /models/primal2/model.ckpt
+  device: cpu
+  observation_size: 11
+  num_future_steps: 3

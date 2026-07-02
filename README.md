@@ -124,6 +124,7 @@ docker/scripts/test.sh
 
 The Docker test matrix currently validates:
 
+* Ubuntu 20.04
 * Ubuntu 22.04
 * Ubuntu 24.04
 * Ubuntu 26.04
