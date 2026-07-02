@@ -69,6 +69,7 @@ jobs:
         ubuntu-version:
           - "22.04"
           - "24.04"
+          - "26.04"
           - "devel"
 
     steps:
