@@ -1,0 +1,5 @@
+type: python
+module: mapf_bench_primal2.adapter
+class: PRIMAL2Pathfinder
+params:
+  mode: compat_greedy

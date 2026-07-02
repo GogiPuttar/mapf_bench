@@ -1,0 +1,5 @@
+repositories:
+  external/PRIMAL2:
+    type: git
+    url: https://github.com/GogiPuttar/PRIMAL2.git
+    version: mapf-bench/pathfinder-plugin
