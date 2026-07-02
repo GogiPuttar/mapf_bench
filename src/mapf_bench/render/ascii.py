@@ -32,7 +32,8 @@ def render_ascii(replay_path: str, config: ReplayRenderConfig) -> None:
         for frame in history:
             _clear_screen()
             print(_frame_to_ascii(width, height, obstacles, goals, frame, config))
-            time.sleep(delay)
+            if delay > 0:
+              time.sleep(delay)
 
         if not config.loop:
             break

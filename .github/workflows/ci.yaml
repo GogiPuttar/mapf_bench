@@ -22,6 +22,8 @@ jobs:
             python-version: "3.10"
           - os: ubuntu-24.04
             python-version: "3.12"
+          - os: ubuntu-26.04
+            python-version: "3.14"
 
     steps:
       - name: Checkout
@@ -53,9 +55,9 @@ jobs:
 
       - name: Smoke test ASCII replay
         run: |
-          timeout 10s mapf-bench replay \
+          mapf-bench replay \
             runs/ci_greedy/replay.json \
-            --config examples/render/ascii.yaml
+            --config examples/render/ci_ascii.yaml
 
   docker-matrix:
     name: Docker tests (${{ matrix.ubuntu-version }})
